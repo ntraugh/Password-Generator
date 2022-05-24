@@ -86,6 +86,7 @@ function generatePassword(){
       pass += characters.charAt(randPass)
      
     }
+    return pass
   }
   
 
