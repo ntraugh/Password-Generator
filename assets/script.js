@@ -62,8 +62,8 @@ function generatePassword(){
   }
   if(choiceSpecial && choiceNumber && choiceUpper && choiceLower){ // if all choices are picked
     for (var i = 0; i < input; i++) {
-      var randPass = Math.floor(Math.random() * lowercase.length);
-      pass += lowercase.charAt(randPass)
+      var randPass = Math.floor(Math.random() * possible.length);
+      pass += possible.charAt(randPass)
      
     }
     return pass // prints out the password onto the screen, but only characters
