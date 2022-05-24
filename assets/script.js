@@ -7,8 +7,9 @@ function generatePassword(){
   var lowercase = "abcdefghijklmnopqrstuvwxyz";
   var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var numbers = "1234567890";
-  var characters = "#$%&()*+,-./:;<=>?" 
-  
+  var characters = "#$%&()*+,-./:;<=>?" ;
+  var possible = '';
+
 
   var input = parseInt(prompt("Choose a number between 8 and 128 characters.")) // parseINT turns the answer into an integer (full number)
   
@@ -22,56 +23,35 @@ function generatePassword(){
 
 
   // if else for lowercase
-  var lower = prompt("Would you like lowercase letters? Yes or No") 
-  var choiceLower = lower.toLowerCase(); // converted choice to lowercase, if answer is not YES, Yes, or yes, the else statement will go into effect.
-  console.log(choiceLower)
-  if(choiceLower === "yes"){
-    alert("We will add lowercase letters to your password.");
-    choiceLower = true; // setting variable to a boolean for later comparison
-  } else{
-    alert("No lowercase letters will be added.");
-    choiceLower = false;
-  }
+  var choiceLower = confirm("Would you like lowercase letters?") 
+  if(choiceLower){
+    possible += lowercase
+  } 
+  
  
 
   // if else for uppercase
-  var upper = prompt("Would you like uppercase letters? Yes or No")  
-  var choiceUpper = upper.toLowerCase(); // converted choice to lowercase, if answer is not YES, Yes, or yes, the else statement will go into effect.
-  console.log(choiceUpper)
-  if(choiceUpper === "yes"){
-    alert("We will add uppercase letters to your password.");
-    choiceUpper = true;
-  } else{
-    alert("No uppercase letters will be added.");
-    choiceUpper = false;
+  var choiceUpper = confirm("Would you like uppercase letters?")  
+  if(choiceUpper){
+    possible += uppercase
   }
 
 
   // if else for numbers
-  var number = prompt("Would you like numbers? Yes or No") 
-  var choiceNumber = number.toLowerCase(); // converted choice to lowercase, if answer is not YES, Yes, or yes, the else statement will go into effect.
-  console.log(choiceNumber)
-  if(choiceNumber === "yes"){
-    alert("We will add numbers to your password.");
-    choiceNumber = true;
-  } else{
-    alert("No numbers will be added.");
-    choiceNumber = false;
-  }
+  var choiceNumber = confirm("Would you like numbers?") 
+  if(choiceNumber){
+    possible += numbers
+  } 
+  
 
 
   // if else for special characters
-  var special = prompt("Would you like special symbols? Yes or No") 
-  var choiceSpecial = special.toLowerCase(); // converted choice to lowercase, if answer is not YES, Yes, or yes, the else statement will go into effect.
-  console.log(choiceSpecial)
-  if(choiceSpecial === "yes"){
-    alert("We will add special characters to your password.");
-    choiceSpecial = true
-  } else{
-    alert("No special characters will be added.");
-    choiceSpecial = false
-  }
+  var choiceSpecial = confirm("Would you like special symbols?") 
+  if(choiceSpecial){
+    possible += characters
+  } 
   
+  console.log(possible)
 
   var pass = "";
 
@@ -82,11 +62,11 @@ function generatePassword(){
   }
   if(choiceSpecial && choiceNumber && choiceUpper && choiceLower){ // if all choices are picked
     for (var i = 0; i < input; i++) {
-      var randPass = Math.floor(Math.random() * characters.length);
-      pass += characters.charAt(randPass)
+      var randPass = Math.floor(Math.random() * lowercase.length);
+      pass += lowercase.charAt(randPass)
      
     }
-    return pass
+    return pass // prints out the password onto the screen, but only characters
   }
   
 
@@ -100,8 +80,7 @@ function generatePassword(){
 
 // Write password to the #password input
 function writePassword() {
-   // when the button is clicked we run the generate password function
-  var password = generatePassword();
+  var password = generatePassword();  // when the button is clicked we run the generate password function
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
   
