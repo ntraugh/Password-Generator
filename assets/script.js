@@ -8,7 +8,7 @@ function generatePassword(){
   var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var numbers = "1234567890";
   var characters = "#$%&()*+,-./:;<=>?" ;
-  var possible = '';
+  var possible = ''; // defining our possible characters string that we will use later when the user is prompted to select the characters
 
 
   var input = parseInt(prompt("Choose a number between 8 and 128 characters.")) // parseINT turns the answer into an integer (full number)
@@ -21,11 +21,11 @@ function generatePassword(){
     return generatePassword(); // re-runs the function so the user can put in a number between the prompted characters
   }
 
-
+  // Now that we know how MANY characters we need to figure out WHICH characters to add
   // if statement for lowercase
   var choiceLower = confirm("Would you like lowercase letters?") 
   if(choiceLower){
-    possible += lowercase
+    possible += lowercase // adding all the lowercase letters to our empty 'possible' string for later use, same below with each option. if it's false it won't be added, no need for else statement
   } 
   
   // if statement for uppercase
@@ -46,29 +46,24 @@ function generatePassword(){
     possible += characters
   } 
   
-  console.log(possible)
+  // console.log(possible) console logged this to make sure that possible contained all the elements we were hoping for
 
-  var pass = "";
+  // creating the final password, empty string because we will add whatever is in 'possible' to it with a for loop
+  var pass = ""; 
 
-  // comparing our values to see which data types to add to the password
+  // Checking the error condition, if they did not select an option from the four they will be re prompted to select one of the characters
   if(!choiceSpecial && !choiceNumber && !choiceUpper && !choiceLower){
     alert("Must contain at least one type of character"); // promting the user they need to choose at least one of the options for characters
     return generatePassword();
   }
-  
+
+  // using a for loop we loop through the 'possible' characters however many times the user selected.  the Math.floor function will give us a random number to use as an index to pick from out of 'possible' variable
   for (var i = 0; i < input; i++) {
       var randPass = Math.floor(Math.random() * possible.length);
-      pass += possible.charAt(randPass)
+      pass += possible.charAt(randPass) // we then add our random character from 'possible' to our empty string 'pass' we defined earlier
      
   }
-  return pass // prints out the password onto the screen, but only characters
-  
-  
-
-
-  
-  
-
+  return pass // prints out the password onto the screen AFTER the for loop runs so it only gets one result
  
 }
 
@@ -83,4 +78,4 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword); // this runs when we click the generate password button becuase of the "click" event paired with our function inside of a function.
