@@ -22,30 +22,25 @@ function generatePassword(){
   }
 
 
-  // if else for lowercase
+  // if statement for lowercase
   var choiceLower = confirm("Would you like lowercase letters?") 
   if(choiceLower){
     possible += lowercase
   } 
   
- 
-
-  // if else for uppercase
+  // if statement for uppercase
   var choiceUpper = confirm("Would you like uppercase letters?")  
   if(choiceUpper){
     possible += uppercase
   }
 
-
-  // if else for numbers
+  // if statement for numbers
   var choiceNumber = confirm("Would you like numbers?") 
   if(choiceNumber){
     possible += numbers
   } 
   
-
-
-  // if else for special characters
+  // if statement for special characters
   var choiceSpecial = confirm("Would you like special symbols?") 
   if(choiceSpecial){
     possible += characters
@@ -60,14 +55,14 @@ function generatePassword(){
     alert("Must contain at least one type of character"); // promting the user they need to choose at least one of the options for characters
     return generatePassword();
   }
-  if(choiceSpecial && choiceNumber && choiceUpper && choiceLower){ // if all choices are picked
-    for (var i = 0; i < input; i++) {
+  
+  for (var i = 0; i < input; i++) {
       var randPass = Math.floor(Math.random() * possible.length);
       pass += possible.charAt(randPass)
      
-    }
-    return pass // prints out the password onto the screen, but only characters
   }
+  return pass // prints out the password onto the screen, but only characters
+  
   
 
 
